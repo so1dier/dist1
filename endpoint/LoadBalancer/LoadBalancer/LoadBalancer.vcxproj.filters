@@ -13,16 +13,37 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\TCP">
+      <UniqueIdentifier>{f1391c0b-ce66-453f-9fd4-6456ff714da7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\TCP\Custom Acceptors">
+      <UniqueIdentifier>{114cc290-601a-4e90-89f6-2fb748893d86}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ThreadSafeResource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ThreadSafeResource.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="socket_acceptor.h">
+      <Filter>Header Files\TCP</Filter>
+    </ClInclude>
+    <ClInclude Include="socket_acceptor_nodes.h">
+      <Filter>Header Files\TCP\Custom Acceptors</Filter>
+    </ClInclude>
+    <ClInclude Include="socket_acceptor_auto_clean_up.h">
+      <Filter>Header Files\TCP\Custom Acceptors</Filter>
+    </ClInclude>
+    <ClInclude Include="socket_acceptor_requests.h">
+      <Filter>Header Files\TCP\Custom Acceptors</Filter>
+    </ClInclude>
+    <ClInclude Include="socket_acceptor_requests_with_ascii_header.h">
+      <Filter>Header Files\TCP\Custom Acceptors</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -31,6 +52,9 @@
     </ClCompile>
     <ClCompile Include="LoadBalancer.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="socket_acceptor.cpp">
+      <Filter>Header Files\TCP</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
