@@ -1,19 +1,6 @@
 #pragma once
 #include "ThreadSafeResource.h"
 #include <boost/asio.hpp>
-#include <thread>
-#include <string>
-#include <array>
-#include <memory>
-#include <vector>
-#include <functional>
-#include <chrono>
-#include <iostream>
-#include <mutex>
-#include <iterator>
-#include <exception>
-using namespace std::string_literals;
-using namespace std::chrono_literals;
 
 namespace ds
 {

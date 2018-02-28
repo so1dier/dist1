@@ -25,50 +25,8 @@ namespace ds
 		};
 
 	protected:
-		virtual bool on_accept(const socket_ptr& socket) override
-		{
-			// This one is responsible for accepting requests from outside the system (the API)
-			socket_acceptor_auto_clean_up::on_accept(socket);
-			receive_header(socket);
-
-			return true;
-		}
-
-		virtual void receive_header(socket_ptr socket)
-		{
-			auto header = std::make_shared<header_t>();
-
-			boost::asio::async_read(*socket, header->get_buffer(),
-				[=, ensure_lifetime = shared_from_this()](const boost::system::error_code& ec, size_t bytes_transferred)
-			{
-				if (bytes_transferred == 0 || ec != boost::system::errc::success)
-					return; // Remote socket down. Please close local socket.
-
-				receive_body(socket, header);
-			});
-
-		}
-
-		void receive_body(socket_ptr socket, header_t::ptr header)
-		{
-			// receive and process body
-			if (header->_data.version != 1)
-				return; // only 1 supported
-
-			constexpr auto max_message_length = 10 * 1'024 * 1'024;
-			if (header->_data.message_length > max_message_length)
-				return;
-			std::shared_ptr<char[]> body(new char[header->_data.message_length]);
-			boost::asio::async_read(*socket, boost::asio::buffer(body.get(), header->_data.message_length),
-				[=, ensure_lifetime = shared_from_this()](const boost::system::error_code& ec, size_t bytes_transferred)
-			{
-				if (bytes_transferred == 0 || ec != boost::system::errc::success)
-					return; // Remote socket down. Please close local socket.
-
-				std::cout << body.get();
-				// continue on -> receive next message
-				receive_header(socket);
-			});
-		}
+		virtual bool on_accept(const socket_ptr& socket) override;
+		virtual void receive_header(socket_ptr socket) const;
+		void receive_body(socket_ptr socket, header_t::ptr header) const;
 	};
 }

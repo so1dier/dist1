@@ -56,5 +56,14 @@
     <ClCompile Include="socket_acceptor.cpp">
       <Filter>Header Files\TCP</Filter>
     </ClCompile>
+    <ClCompile Include="socket_acceptor_nodes.cpp">
+      <Filter>Header Files\TCP\Custom Acceptors</Filter>
+    </ClCompile>
+    <ClCompile Include="socket_acceptor_requests.cpp">
+      <Filter>Header Files\TCP\Custom Acceptors</Filter>
+    </ClCompile>
+    <ClCompile Include="socket_acceptor_requests_with_ascii_header.cpp">
+      <Filter>Header Files\TCP\Custom Acceptors</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -19,3 +19,5 @@
 /endpoint/LoadBalancer/x64/Debug/LoadBalancer.exe
 /endpoint/LoadBalancer/x64/Debug/LoadBalancer.ilk
 /endpoint/LoadBalancer/x64/Debug/LoadBalancer.pdb
+/endpoint/LoadBalancer/LoadBalancer/x64/Debug/*.obj
+/endpoint/LoadBalancer/LoadBalancer/x64/Debug/*.log
