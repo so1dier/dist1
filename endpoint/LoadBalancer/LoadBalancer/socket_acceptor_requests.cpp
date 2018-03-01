@@ -42,8 +42,6 @@ void ds::socket_acceptor_requests::receive_body(socket_ptr socket, header_t::ptr
 		if (bytes_transferred == 0 || ec != boost::system::errc::success)
 			return; // Remote socket down. Please close local socket.
 
-		std::for_each_n(body.get(), header->_data.message_length, [](auto& c) {c = toupper(c); });
-		socket->send(boost::asio::buffer(body.get(), header->_data.message_length));
 		// continue on -> receive next message
 		receive_header(socket);
 	});

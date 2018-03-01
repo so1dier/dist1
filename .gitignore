@@ -21,3 +21,4 @@
 /endpoint/LoadBalancer/x64/Debug/LoadBalancer.pdb
 /endpoint/LoadBalancer/LoadBalancer/x64/Debug/*.obj
 /endpoint/LoadBalancer/LoadBalancer/x64/Debug/*.log
+/endpoint/LoadBalancer/LoadBalancer/x64/Debug/LoadBalancer.tlog/unsuccessfulbuild
