@@ -1,7 +1,5 @@
 #include "stdafx.h"
 #include "socket_acceptor_manage_io_service.h"
-#include "nlohmann/json.hpp"
-using namespace nlohmann;
 
 void ds::socket_acceptor_manage_io_service::receive(const socket_ptr& socket) const
 {
