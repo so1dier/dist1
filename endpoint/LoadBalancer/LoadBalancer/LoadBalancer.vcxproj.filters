@@ -45,6 +45,9 @@
     <ClInclude Include="socket_acceptor_requests_with_ascii_header.h">
       <Filter>Header Files\TCP\Custom Acceptors</Filter>
     </ClInclude>
+    <ClInclude Include="socket_acceptor_manage_io_service.h">
+      <Filter>Header Files\TCP\Custom Acceptors</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -63,6 +66,9 @@
       <Filter>Header Files\TCP\Custom Acceptors</Filter>
     </ClCompile>
     <ClCompile Include="socket_acceptor_requests_with_ascii_header.cpp">
+      <Filter>Header Files\TCP\Custom Acceptors</Filter>
+    </ClCompile>
+    <ClCompile Include="socket_acceptor_manage_io_service.cpp">
       <Filter>Header Files\TCP\Custom Acceptors</Filter>
     </ClCompile>
   </ItemGroup>

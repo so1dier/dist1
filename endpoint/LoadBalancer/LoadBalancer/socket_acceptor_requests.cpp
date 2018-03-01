@@ -14,7 +14,7 @@ void ds::socket_acceptor_requests::receive_header(socket_ptr socket) const
 {
 	auto header = std::make_shared<header_t>();
 
-	boost::asio::async_read(*socket, header->get_buffer(),
+	boost::asio::async_read(*socket, mdk::to_asio_buffer(*header),
 		[=, ensure_lifetime = shared_from_this()](const boost::system::error_code& ec, size_t bytes_transferred)
 	{
 		if (bytes_transferred == 0 || ec != boost::system::errc::success)
@@ -42,6 +42,7 @@ void ds::socket_acceptor_requests::receive_body(socket_ptr socket, header_t::ptr
 		if (bytes_transferred == 0 || ec != boost::system::errc::success)
 			return; // Remote socket down. Please close local socket.
 
+		body; // placeholder
 		// continue on -> receive next message
 		receive_header(socket);
 	});

@@ -1,6 +1,6 @@
 #pragma once
 #include "ThreadSafeResource.h"
-#include <boost/asio.hpp>
+#include "mdk/asio_helpers.h"
 
 namespace ds
 {

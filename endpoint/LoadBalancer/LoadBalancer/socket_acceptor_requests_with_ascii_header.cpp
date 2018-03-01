@@ -12,16 +12,11 @@ void ds::socket_acceptor_requests_with_ascii_header::receive_header(socket_ptr s
 			char version[10] = {};
 			char message_length[10] = {};
 		} _data;
-
-		auto get_buffer()
-		{
-			return boost::asio::buffer(reinterpret_cast<char(&)[sizeof(data_t)]>(_data));
-		}
 	};
 
 	auto ascii_header = std::make_shared<ascii_header_t>();
 
-	boost::asio::async_read(*socket, boost::asio::buffer(ascii_header->get_buffer()),
+	boost::asio::async_read(*socket, mdk::to_asio_buffer(*ascii_header),
 		[=, ensure_lifetime = shared_from_this()](const boost::system::error_code& ec, size_t bytes_transferred)
 	{
 		if (bytes_transferred == 0 || ec != boost::system::errc::success)

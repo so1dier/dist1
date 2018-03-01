@@ -17,11 +17,6 @@ namespace ds
 				uint32_t version = {};
 				uint32_t message_length = {};
 			} _data;
-
-			auto get_buffer()
-			{
-				return boost::asio::buffer(reinterpret_cast<char(&)[sizeof(_data)]>(_data));
-			}
 		};
 
 	protected:

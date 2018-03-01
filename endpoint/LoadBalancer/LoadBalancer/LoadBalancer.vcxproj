@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClInclude Include="socket_acceptor.h" />
     <ClInclude Include="socket_acceptor_auto_clean_up.h" />
+    <ClInclude Include="socket_acceptor_manage_io_service.h" />
     <ClInclude Include="socket_acceptor_nodes.h" />
     <ClInclude Include="socket_acceptor_requests.h" />
     <ClInclude Include="socket_acceptor_requests_with_ascii_header.h" />
@@ -163,6 +164,7 @@
   <ItemGroup>
     <ClCompile Include="LoadBalancer.cpp" />
     <ClCompile Include="socket_acceptor.cpp" />
+    <ClCompile Include="socket_acceptor_manage_io_service.cpp" />
     <ClCompile Include="socket_acceptor_nodes.cpp" />
     <ClCompile Include="socket_acceptor_requests.cpp" />
     <ClCompile Include="socket_acceptor_requests_with_ascii_header.cpp" />
