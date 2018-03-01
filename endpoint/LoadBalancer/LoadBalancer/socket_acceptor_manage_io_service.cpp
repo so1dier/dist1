@@ -34,3 +34,9 @@ void ds::socket_acceptor_manage_io_service::receive(const socket_ptr& socket) co
 		});
 	});
 }
+
+bool ds::socket_acceptor_manage_io_service::on_accept(const socket_ptr& socket)
+{
+	receive(socket);
+	return true;
+}
