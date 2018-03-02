@@ -13,7 +13,7 @@ class ThreadSafeResourceImpl
     {
         const LockType mLock;
     public:
-        TResourceLock(TResourceConstnessType& Resource, MutexType& Mutex) : mResource(Resource), mLock(Mutex) {}
+        TResourceLock(TResourceConstnessType& Resource, MutexType& Mutex) : mLock(Mutex), mResource(Resource) {}
         TResourceLock(TResourceLock&& other) : mLock(std::move(other.mLock)), mResource(other.mResource) {};
         TResourceLock(const TResourceLock& other) = delete;
 
