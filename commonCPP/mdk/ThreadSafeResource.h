@@ -35,7 +35,7 @@ public:
 };
 
 #include <shared_mutex>
-//note: uses SRW locks internally (latest WINAPI)
+// note: on MSVC this uses SRW locks internally (latest WINAPI)
 template<typename TResource>
 using ThreadSafeResource = ThreadSafeResourceImpl<TResource, std::shared_mutex, std::shared_lock<std::shared_mutex>, std::unique_lock<std::shared_mutex>>;
 
