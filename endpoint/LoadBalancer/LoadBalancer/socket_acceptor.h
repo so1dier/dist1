@@ -1,5 +1,5 @@
 #pragma once
-#include "mdk/ThreadSafeResource.h"
+#include "mdk/thread_safe_resource.h"
 #include "mdk/asio_helpers.h"
 
 namespace ds
@@ -18,7 +18,7 @@ namespace ds
 
 		tcp::acceptor mAcceptor;
 		// Sockets call close on their own destruction. We keep weak pointers just in case the programmer wants to force close early. 
-		ThreadSafeResource<std::list<socket_weak_ptr>> mConnections;
+		mdk::thread_safe_resource<std::list<socket_weak_ptr>> mConnections;
 		io_service_ptr _io_service;
 
 		// virtual function hook for handling accept. return true to add connection to connection pool
