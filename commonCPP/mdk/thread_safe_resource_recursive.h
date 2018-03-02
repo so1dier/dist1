@@ -6,10 +6,10 @@ namespace mdk
 {
     namespace detail
     {
-        // shared recursive mutex implementation, so can call GetResourceForWrite on same thread without a dead-lock
+        // shared recursive mutex implementation, so can call for_write on same thread without a dead-lock. for_write then for_read will still not work.
         struct shared_recursive_mutex : std::shared_mutex
         {
-            void lock(void) 
+            void lock() 
             {
                 const auto this_id = std::this_thread::get_id();
                 if(owner == this_id) 
@@ -26,7 +26,7 @@ namespace mdk
                 }
             }
             
-            void unlock(void) 
+            void unlock() 
             {
                 if(count > 1) 
                 {

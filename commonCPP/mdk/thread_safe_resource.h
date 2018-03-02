@@ -30,13 +30,13 @@ namespace mdk
 
         public:
             //Gets a shared_lock over a class that only exposes const reference to the resource
-            resource_lock_t<SharedLockType, const TResource> GetResourceForRead() const
+            resource_lock_t<SharedLockType, const TResource> for_read() const
             {
                 return resource_lock_t<SharedLockType, const TResource>(_resource, _mutex);
             }
 
             //Gets a unique_lock over a class that exposes non-const reference to the resource
-            resource_lock_t<UniqueLockType, TResource> GetResourceForWrite()
+            resource_lock_t<UniqueLockType, TResource> for_write()
             {
                 return resource_lock_t<UniqueLockType, TResource>(_resource, _mutex);
             }
