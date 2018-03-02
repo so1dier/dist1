@@ -1,5 +1,5 @@
 #pragma once
-#include "ThreadSafeResource.h"
+#include "mdk/ThreadSafeResource.h"
 #include "mdk/asio_helpers.h"
 
 namespace ds
