@@ -1,11 +1,15 @@
 #pragma once
 #include "socket_acceptor_auto_clean_up.h"
+#include "amqp_client.h"
+
 namespace ds
 {
 	struct socket_acceptor_requests : socket_acceptor_auto_clean_up
 	{
-		template<typename... Args> socket_acceptor_requests(Args&&... args)
-			: socket_acceptor_auto_clean_up(std::forward<Args>(args)...) {}
+		socket_acceptor_requests(io_service_ptr io_service, int port, const std::string& rabbit_host, const std::string& rabbit_port)
+			: socket_acceptor_auto_clean_up(io_service, port),
+			  _rabbit_client(_io_service, rabbit_host, rabbit_port),
+			  _publisher(&_rabbit_client.amqp()) {}
 
 		// very basic TCP header. Just a version and a message length
 #pragma pack(1)
@@ -21,7 +25,10 @@ namespace ds
 
 	protected:
 		virtual bool on_accept(const socket_ptr& socket) override;
-		virtual void receive_header(socket_ptr socket) const;
-		void receive_body(socket_ptr socket, header_t::ptr header) const;
+		virtual void receive_header(socket_ptr socket);
+		void receive_body(socket_ptr socket, header_t::ptr header);
+
+		ds::rabbitmq::client _rabbit_client;
+		AMQP::Channel _publisher;
 	};
 }

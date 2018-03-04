@@ -1,6 +1,7 @@
 #pragma once
 #include "mdk/thread_safe_resource.h"
 #include "mdk/asio_helpers.h"
+#include "common_tcp_defs.h"
 
 namespace ds
 {
@@ -9,12 +10,8 @@ namespace ds
 
 	class socket_acceptor : public std::enable_shared_from_this<socket_acceptor>
 	{
-		typedef std::shared_ptr<socket_acceptor> ptr;
-		typedef tcp::socket socket_t;
 	protected:
 		typedef std::shared_ptr<socket_acceptor> ptr;
-		typedef std::shared_ptr<socket_t> socket_ptr;
-		typedef std::weak_ptr<socket_t> socket_weak_ptr;
 
 		tcp::acceptor mAcceptor;
 		// Sockets call close on their own destruction. We keep weak pointers just in case the programmer wants to force close early. 

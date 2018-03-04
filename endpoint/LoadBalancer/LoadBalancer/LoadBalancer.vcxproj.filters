@@ -25,6 +25,12 @@
     <Filter Include="Source Files\TCP\Custom Acceptors">
       <UniqueIdentifier>{182acdc2-9c0f-42e8-a1c4-150317cdc2b6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Rabbit MQ">
+      <UniqueIdentifier>{5cc1c187-fb83-46ad-aa04-6243433594b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Rabbit MQ">
+      <UniqueIdentifier>{c089bdbc-e459-424f-969b-ab67339ed6ae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -51,12 +57,15 @@
     <ClInclude Include="socket_acceptor_manage_io_service.h">
       <Filter>Header Files\TCP\Custom Acceptors</Filter>
     </ClInclude>
+    <ClInclude Include="amqp_client.h">
+      <Filter>Header Files\Rabbit MQ</Filter>
+    </ClInclude>
+    <ClInclude Include="common_tcp_defs.h">
+      <Filter>Header Files\TCP</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LoadBalancer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="socket_acceptor_requests_with_ascii_header.cpp">
@@ -73,6 +82,12 @@
     </ClCompile>
     <ClCompile Include="socket_acceptor.cpp">
       <Filter>Source Files\TCP</Filter>
+    </ClCompile>
+    <ClCompile Include="load_balancer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="amqp_client.cpp">
+      <Filter>Source Files\Rabbit MQ</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "socket_acceptor_requests_with_ascii_header.h"
 
-void ds::socket_acceptor_requests_with_ascii_header::receive_header(socket_ptr socket) const
+void ds::socket_acceptor_requests_with_ascii_header::receive_header(socket_ptr socket)
 {
 	// Very simple, just receive the message length as ascii, and convert to binary header
 #pragma pack(1)
