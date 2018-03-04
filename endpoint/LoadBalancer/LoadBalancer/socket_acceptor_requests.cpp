@@ -10,15 +10,14 @@ ds::socket_acceptor_requests::socket_acceptor_requests(io_service_ptr io_service
 	_rabbit_client(_io_service, rabbit_host, rabbit_port),
 	_publisher(&_rabbit_client.amqp())
 {
-	_publisher.declareExchange("distributed_txns", AMQP::fanout)
+	_publisher.declareExchange("distributed_txns", AMQP::fanout, AMQP::durable)
 		.onFinalize([](auto...)
 	{
-		int x = 0;
+		
 	});
-	_publisher.declareQueue("distributed_txns")
+	_publisher.declareQueue("distributed_txns", AMQP::durable)
 		.onSuccess([&](std::string const& name, uint32_t, uint32_t)
 	{
-
 		_publisher.bindQueue("distributed_txns", name, "distributed_txns");
 	});
 }
