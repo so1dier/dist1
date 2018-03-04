@@ -6,11 +6,7 @@ namespace ds
 {
 	struct socket_acceptor_requests : socket_acceptor_auto_clean_up
 	{
-		socket_acceptor_requests(io_service_ptr io_service, int port, const std::string& rabbit_host, const std::string& rabbit_port)
-			: socket_acceptor_auto_clean_up(io_service, port),
-			  _rabbit_client(_io_service, rabbit_host, rabbit_port),
-			  _publisher(&_rabbit_client.amqp()) {}
-
+		socket_acceptor_requests(io_service_ptr io_service, int port, const std::string& rabbit_host, const std::string& rabbit_port);
 		// very basic TCP header. Just a version and a message length
 #pragma pack(1)
 		struct header_t

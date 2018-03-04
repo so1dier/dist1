@@ -5,6 +5,25 @@
 #include "amqp_client.h"
 using namespace nlohmann;
 
+ds::socket_acceptor_requests::socket_acceptor_requests(io_service_ptr io_service, int port, const std::string & rabbit_host, const std::string & rabbit_port)
+	: socket_acceptor_auto_clean_up(io_service, port),
+	_rabbit_client(_io_service, rabbit_host, rabbit_port),
+	_publisher(&_rabbit_client.amqp())
+{
+	_publisher.declareExchange("distributed_txns", AMQP::fanout)
+		.onFinalize([](auto...)
+	{
+		int x = 0;
+	});
+	_publisher.declareQueue("distributed_txns")
+		.onSuccess([&](std::string const& name, uint32_t, uint32_t)
+	{
+
+		_publisher.bindQueue("distributed_txns", name, "distributed_txns");
+	});
+}
+
+
 bool ds::socket_acceptor_requests::on_accept(const socket_ptr& socket)
 {
 	// This one is responsible for accepting requests from outside the system (the API)
@@ -50,14 +69,17 @@ void ds::socket_acceptor_requests::receive_body(socket_ptr socket, header_t::ptr
 		try
 		{
 			auto data = json::parse(body.get());
+
 			_publisher.publish("distributed_txns", "distributed_txns", data.dump())
 				.onError([](const char* err)
 				{
 					// not implemented
+					int x = 0;
 				})
 				.onSuccess([&]()
 				{
 					// not implemented
+					int x = 0;
 				});
 		}
 		catch (const nlohmann::detail::parse_error& e)

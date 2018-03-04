@@ -8,7 +8,6 @@ namespace ds
 {
 	namespace rabbitmq
 	{
-		constexpr int no_flags = 0;
 		namespace detail
 		{
 			class connection_handler : public AMQP::ConnectionHandler
