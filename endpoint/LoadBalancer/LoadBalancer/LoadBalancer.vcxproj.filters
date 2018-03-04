@@ -19,6 +19,12 @@
     <Filter Include="Header Files\TCP\Custom Acceptors">
       <UniqueIdentifier>{114cc290-601a-4e90-89f6-2fb748893d86}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\TCP">
+      <UniqueIdentifier>{bb831b8b-b929-4b79-9a69-c7e1a7930a47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TCP\Custom Acceptors">
+      <UniqueIdentifier>{182acdc2-9c0f-42e8-a1c4-150317cdc2b6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -53,20 +59,20 @@
     <ClCompile Include="LoadBalancer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="socket_acceptor.cpp">
-      <Filter>Header Files\TCP</Filter>
-    </ClCompile>
-    <ClCompile Include="socket_acceptor_nodes.cpp">
-      <Filter>Header Files\TCP\Custom Acceptors</Filter>
+    <ClCompile Include="socket_acceptor_requests_with_ascii_header.cpp">
+      <Filter>Source Files\TCP\Custom Acceptors</Filter>
     </ClCompile>
     <ClCompile Include="socket_acceptor_requests.cpp">
-      <Filter>Header Files\TCP\Custom Acceptors</Filter>
+      <Filter>Source Files\TCP\Custom Acceptors</Filter>
     </ClCompile>
-    <ClCompile Include="socket_acceptor_requests_with_ascii_header.cpp">
-      <Filter>Header Files\TCP\Custom Acceptors</Filter>
+    <ClCompile Include="socket_acceptor_nodes.cpp">
+      <Filter>Source Files\TCP\Custom Acceptors</Filter>
     </ClCompile>
     <ClCompile Include="socket_acceptor_manage_io_service.cpp">
-      <Filter>Header Files\TCP\Custom Acceptors</Filter>
+      <Filter>Source Files\TCP\Custom Acceptors</Filter>
+    </ClCompile>
+    <ClCompile Include="socket_acceptor.cpp">
+      <Filter>Source Files\TCP</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
