@@ -16,7 +16,7 @@ ds::rabbitmq::detail::connection_handler::connection_handler(const io_service_pt
 */
 void ds::rabbitmq::detail::connection_handler::onData(AMQP::Connection *connection, const char *data, size_t size)
 {
-	boost::asio::async_write(*_socket, boost::asio::const_buffer(data, size), [](auto& ec, std::size_t)
+	boost::asio::async_write(*_socket, boost::asio::buffer(data, size), [](auto& ec, std::size_t)
 	{
 		if (ec)
 		{
@@ -71,7 +71,7 @@ void ds::rabbitmq::detail::connection_impl::keep_reading()
 			{
 				// send the received data to the amqp layer
 				amqp_impl.parse(buffer, length);
-				keep_reading();
+				this->keep_reading();
 			}
 			else
 			{

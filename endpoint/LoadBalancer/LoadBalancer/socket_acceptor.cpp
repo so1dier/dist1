@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "socket_acceptor.h"
+#include <functional>
+#include <boost/bind.hpp>
 
 using namespace boost::asio::ip;
 
@@ -18,11 +20,13 @@ void ds::socket_acceptor::clean_up()
 {
 	auto lock = mConnections.for_write();
 	for (auto it = lock.r().begin(); it != lock.r().end();)
-		if (auto strong_socket = (*it).lock(); !strong_socket)
+        {
+		auto strong_socket = (*it).lock();
+		if (!strong_socket)
 			it = lock.r().erase(it);
 		else
 			++it;
-
+        }
 	mAcceptor.cancel();
 }
 
@@ -38,6 +42,7 @@ void ds::socket_acceptor::close()
 
 ds::socket_acceptor::ptr ds::socket_acceptor::start_accept()
 {
-	mAcceptor.async_accept(std::bind(&socket_acceptor::accept, shared_from_this(), std::placeholders::_1, std::placeholders::_2));
+//	tcp::socket new_connection(*_io_service);
+//	mAcceptor.async_accept(boost::bind(&socket_acceptor::accept, this, boost::ref(new_connection), boost::asio::placeholders::error));
 	return shared_from_this();
 }
