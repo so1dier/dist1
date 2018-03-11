@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "socket_acceptor_requests.h"
 #include <iostream>
-#include "nlohmann\json.hpp"
+#include "nlohmann/json.hpp"
 #include "amqp_client.h"
 using namespace nlohmann;
 
@@ -11,7 +11,7 @@ ds::socket_acceptor_requests::socket_acceptor_requests(io_service_ptr io_service
 	_publisher(&_rabbit_client.amqp())
 {
 	_publisher.declareExchange("distributed_txns", AMQP::fanout, AMQP::durable)
-		.onFinalize([](auto...)
+		.onFinalize([]()
 	{
 		
 	});
@@ -21,7 +21,6 @@ ds::socket_acceptor_requests::socket_acceptor_requests(io_service_ptr io_service
 		_publisher.bindQueue("distributed_txns", name, "distributed_txns");
 	});
 }
-
 
 bool ds::socket_acceptor_requests::on_accept(const socket_ptr& socket)
 {

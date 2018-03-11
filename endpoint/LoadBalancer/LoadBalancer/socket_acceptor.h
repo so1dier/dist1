@@ -2,6 +2,7 @@
 #include "mdk/thread_safe_resource.h"
 #include "mdk/asio_helpers.h"
 #include "common_tcp_defs.h"
+#include <list>
 
 namespace ds
 {

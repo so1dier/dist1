@@ -1,6 +1,7 @@
 #pragma once
-#include <shared_mutex>
 #include <atomic>
+#include <boost/thread/shared_mutex.hpp>
+
 // Most STL/boost containers are guaranteed to be thread safe over
 // multiple reads (defined as access to const methods) but a thread needs a unique lock to call a non-const method...
 
@@ -22,7 +23,7 @@ namespace mdk
                 TResourceConstnessType& _resource;
             public:
                 resource_lock_t(TResourceConstnessType& resource, MutexType& mutex) : _lock(mutex), _resource(resource) {}
-                resource_lock_t(resource_lock_t&& other) : _lock(std::move(other._lock)), resource(other._resource) {};
+                resource_lock_t(resource_lock_t&& other) : _lock(std::move(other._lock)), _resource(other._resource) {};
                 resource_lock_t(const resource_lock_t& other) = delete;
 
                 auto& r() { return _resource; }
@@ -42,7 +43,8 @@ namespace mdk
             }
         };
     }
+
     // note: on MSVC this uses SRW locks internally (latest WINAPI)
     template<typename TResource>
-    using thread_safe_resource = detail::thread_safe_resource_impl<TResource, std::shared_mutex, std::shared_lock<std::shared_mutex>, std::unique_lock<std::shared_mutex>>;
+    using thread_safe_resource = detail::thread_safe_resource_impl<TResource, boost::shared_mutex, boost::shared_lock<boost::shared_mutex>, boost::unique_lock<boost::shared_mutex>>;
 }
